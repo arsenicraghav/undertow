@@ -1,4 +1,4 @@
-package com.educatereality;
+package com.educatereality.undertow;
 
 import io.undertow.Undertow;
 
@@ -10,8 +10,7 @@ public class Server {
         return undertow = Undertow
                 .builder()
                 .addHttpListener(8080, "0.0.0.0")   // 0.0.0.0 means "listen on ALL available addresses"
-                .setHandler(new APIRoutes().get())
-                //.setHandler(new StaticHandler())
+                .setHandler(new Routes().getAll())
                 .build();
     }
 

@@ -1,22 +1,23 @@
-package com.educatereality.util;
+package com.educatereality.handler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.educatereality.util.Constants;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
 
-public class JsonSerializationHandler implements HttpHandler {
-
-    private final ObjectMapper objectMapper;
+public class HttpRequestHandler implements HttpHandler {
 
     private final HttpHandler next;
 
-    public JsonSerializationHandler(HttpHandler next) {
-        this.objectMapper = new ObjectMapper();
+    public HttpRequestHandler(HttpHandler next) {
         this.next = next;
     }
 
     @Override
     public void handleRequest(HttpServerExchange exchange) throws Exception {
+
+        exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, Constants.APPLICATION_JSON);
+
         if (exchange.isInIoThread()) {
             exchange.dispatch(this);
             return;
@@ -24,7 +25,4 @@ public class JsonSerializationHandler implements HttpHandler {
         next.handleRequest(exchange);
     }
 
-    public ObjectMapper getObjectMapper() {
-        return objectMapper;
-    }
 }

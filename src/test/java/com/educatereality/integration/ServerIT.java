@@ -1,6 +1,6 @@
 package com.educatereality.integration;
 
-import com.educatereality.Server;
+import com.educatereality.undertow.Server;
 import com.educatereality.util.Constants;
 import org.junit.After;
 import org.junit.Before;

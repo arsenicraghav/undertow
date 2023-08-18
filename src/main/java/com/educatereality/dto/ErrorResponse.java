@@ -1,5 +1,7 @@
 package com.educatereality.dto;
 
+import com.educatereality.util.Util;
+
 import java.sql.Timestamp;
 
 public class ErrorResponse {
@@ -27,6 +29,11 @@ public class ErrorResponse {
 
     public String getError() {
         return this.error;
+    }
+
+    @Override
+    public String toString() {
+        return Util.jsonify(this);
     }
 
     public static class ErrorResponseBuilder {

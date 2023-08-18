@@ -1,5 +1,7 @@
 package com.educatereality.dto;
 
+import com.educatereality.util.Util;
+
 import java.sql.Timestamp;
 
 public class Response<T> {
@@ -33,6 +35,11 @@ public class Response<T> {
 
     public T getData() {
         return this.data;
+    }
+
+    @Override
+    public String toString() {
+        return Util.jsonify(this);
     }
 
     public static class ResponseBuilder<T> {
